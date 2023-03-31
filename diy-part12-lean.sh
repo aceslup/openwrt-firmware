@@ -9,14 +9,18 @@ tree ./feeds/packages/utils/syncthing
 
 # aliyundrive-webdav
 rm -rf ./feeds/packages/multimedia/aliyundrive-webdav
+cp -r ./feeds/smpackage/aliyundrive-webdav ./feeds/packages/multimedia/
 
 # aliyundrive-fuse
 rm -rf ./feeds/packages/multimedia/aliyundrive-fuse
+cp -r ./feeds/smpackage/aliyundrive-fuse ./feeds/packages/multimedia/
 
 # UnblockNeteaseMusic-Go
 rm -rf ./feeds/packages/multimedia/UnblockNeteaseMusic-Go
+cp -r ./feeds/smpackage/UnblockNeteaseMusic-Go ./feeds/packages/multimedia/
 
 # UnblockNeteaseMusic
 rm -rf ./feeds/packages/multimedia/UnblockNeteaseMusic
+cp -r ./feeds/smpackage/UnblockNeteaseMusic ./feeds/packages/multimedia/
 
 ./scripts/feeds update -a
