@@ -26,7 +26,7 @@ sed -e 's/ddns-scripts_aliyun//g' \
     -e 's/coremark//g' -i ./include/target.mk
 
 #【lean】：禁用 coolsnowwolf/luci/applications 软件源
-sed -i 's/\(^src-git luci.*\)/#\1/' feeds.conf.default
+#sed -i 's/\(^src-git luci.*\)/#\1/' feeds.conf.default
 
 
 #【lienol】: passwall,syncthing
@@ -40,7 +40,10 @@ sed -i 's/\(^src-git luci.*\)/#\1/' feeds.conf.default
 
 #【kenzok8】: 追新软件包
 # PATH=/home/runner/work/openwrt-firmware/openwrt-firmware/openwrt/feeds/smpackage
+# 行尾追加
 sed -i '$a src-git smpackage https://github.com/kenzok8/small-package' feeds.conf.default
+# 首行插入，尝试 kenzok8/small-package 软件源优先解析于 coolsnowwolf/packages
+sed -i '1i src-git smpackage https://github.com/kenzok8/small-package' feeds.conf.default
 
 
 #【xiaorouji】:
