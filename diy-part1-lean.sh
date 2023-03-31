@@ -24,10 +24,14 @@ sed -e 's/ddns-scripts_aliyun//g' \
     -e 's/luci-app-nlbwmon//g' \
     -e 's/coremark//g' -i ./include/target.mk
 
-#【coolsnowwolf/packages】：syncthing
+#【coolsnowwolf/packages】：syncthing,aliyundrive-webdav,aliyundrive-fuse,UnblockNeteaseMusic-Go,UnblockNeteaseMusic
 rm -rf ./feeds/packages/utils/syncthing/files/etc/config/syncthing
 rm -rf ./feeds/packages/utils/syncthing/files/etc/init.d/syncthing
-tree ./feeds/packages/utils/syncthing
+tree ./feeds/packages/utils/syncthing 
+rm -rf ./feeds/packages/multimedia/aliyundrive-webdav
+rm -rf ./feeds/packages/multimedia/aliyundrive-fuse
+rm -rf ./feeds/packages/multimedia/UnblockNeteaseMusic-Go
+rm -rf ./feeds/packages/multimedia/UnblockNeteaseMusic
 
 
 #【lienol】: passwall,syncthing
