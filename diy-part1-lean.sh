@@ -15,6 +15,7 @@
 #sed -i '$a src-git helloworld https://github.com/fw876/helloworld' feeds.conf.default
 #sed -i '$a src-git lean https://github.com/coolsnowwolf/packages' feeds.conf.default
 
+
 #【lean】：去掉无刚需的默认插件
 sed -e 's/ddns-scripts_aliyun//g' \
     -e 's/ddns-scripts_dnspod//g' \
@@ -23,6 +24,9 @@ sed -e 's/ddns-scripts_aliyun//g' \
     -e 's/luci-app-accesscontrol//g' \
     -e 's/luci-app-nlbwmon//g' \
     -e 's/coremark//g' -i ./include/target.mk
+
+#【lean】：禁用 coolsnowwolf/luci/applications 软件源
+sed -i 's/\(^src-git luci.*\)/#\1/' feeds.conf.default
 
 
 #【lienol】: passwall,syncthing
