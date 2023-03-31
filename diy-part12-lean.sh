@@ -18,3 +18,5 @@ rm -rf ./feeds/packages/multimedia/UnblockNeteaseMusic-Go
 
 # UnblockNeteaseMusic
 rm -rf ./feeds/packages/multimedia/UnblockNeteaseMusic
+
+./scripts/feeds update -a
