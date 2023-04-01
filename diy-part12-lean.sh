@@ -8,10 +8,10 @@ rm -rf ./feeds/packages/utils/syncthing/files/etc/init.d/syncthing
 tree ./feeds/packages/utils/syncthing 
 
 # aliyundrive-webdav
-#rm -rf ./feeds/packages/multimedia/aliyundrive-webdav
-#cp -r ./feeds/smpackage/aliyundrive-webdav ./feeds/packages/multimedia/
-#rm -rf ./feeds/packages/applications/luci-app-aliyundrive-webdav
-#cp -r ./feeds/smpackage/luci-app-aliyundrive-webdav ./feeds/packages/applications/
+rm -rf ./feeds/packages/multimedia/aliyundrive-webdav
+cp -r ./feeds/smpackage/aliyundrive-webdav ./feeds/packages/multimedia/
+rm -rf ./feeds/packages/applications/luci-app-aliyundrive-webdav
+cp -r ./feeds/smpackage/luci-app-aliyundrive-webdav ./feeds/packages/applications/
 
 # aliyundrive-fuse
 #rm -rf ./feeds/packages/multimedia/aliyundrive-fuse
@@ -27,4 +27,6 @@ tree ./feeds/packages/utils/syncthing
 #rm -rf ./feeds/packages/multimedia/UnblockNeteaseMusic
 #cp -r ./feeds/smpackage/UnblockNeteaseMusic ./feeds/packages/multimedia/
 
-#./scripts/feeds update -a
+
+# 只更新修改后的 coolsnowwolf/packages 源
+./scripts/feeds update packages
