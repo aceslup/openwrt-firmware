@@ -9,17 +9,16 @@
 
 # aliyundrive-webdav
 rm -rf ./feeds/packages/multimedia/aliyundrive-webdav
-cp -r ./feeds/smpackage/aliyundrive-webdav ./feeds/packages/multimedia/
+#cp -r ./feeds/smpackage/aliyundrive-webdav ./feeds/packages/multimedia/
 rm -rf ./feeds/luci/applications/luci-app-aliyundrive-webdav
-cp -r ./feeds/smpackage/luci-app-aliyundrive-webdav ./feeds/luci/applications/
+#cp -r ./feeds/smpackage/luci-app-aliyundrive-webdav ./feeds/luci/applications/
 
 # aliyundrive-fuse
 rm -rf ./feeds/packages/multimedia/aliyundrive-fuse
-cp -r ./feeds/smpackage/aliyundrive-fuse ./feeds/packages/multimedia/
+#cp -r ./feeds/smpackage/aliyundrive-fuse ./feeds/packages/multimedia/
 rm -rf ./feeds/luci/applications/luci-app-aliyundrive-fuse
-cp -r ./feeds/smpackage/luci-app-aliyundrive-fuse ./feeds/luci/applications/
+#cp -r ./feeds/smpackage/luci-app-aliyundrive-fuse ./feeds/luci/applications/
 
 
 # 只更新修改后的 coolsnowwolf: packages, luci 源
-./scripts/feeds update packages
-./scripts/feeds update luci
+./scripts/feeds update -f
