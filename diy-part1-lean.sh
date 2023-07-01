@@ -46,6 +46,10 @@ sed -i '$a src-git smpackage https://github.com/kenzok8/small-package' feeds.con
 #sed -i '1i src-git smpackage https://github.com/kenzok8/small-package' feeds.conf.default
 
 
+#【tty228】: luci-app-wechatpush
+git clone https://github.com/tty228/luci-app-wechatpush `pwd`/package/luci-app-wechatpush
+
+
 #【xiaorouji】:
 #sed -i '$a src-git xiaorouji https://github.com/xiaorouji/openwrt-passwall' feeds.conf.default
 
@@ -58,8 +62,6 @@ sed -i '$a src-git smpackage https://github.com/kenzok8/small-package' feeds.con
 #sed -i '$a src-git OpenClash https://github.com/vernesong/OpenClash' feeds.conf.default
 
 
-
-######################################################## 散装软件
 #【pymumu】：SmartDNS
 #WORKINGDIR="`pwd`/feeds/packages/net/smartdns"
 #mkdir $WORKINGDIR -p
@@ -84,6 +86,7 @@ sed -i '$a src-git smpackage https://github.com/kenzok8/small-package' feeds.con
 #rm $WORKINGDIR/${LUCIBRANCH}.zip
 
 
+######################################################## 散装软件
 #【kuoruan】：Kcptun
 #git clone https://github.com/kuoruan/luci-app-kcptun.git `pwd`/package/luci-app-kcptun
 
@@ -160,9 +163,9 @@ sed -i '$a src-git smpackage https://github.com/kenzok8/small-package' feeds.con
 
 
 #【openwrt/packages】：syncthing
-# PWD=/home/runner/work/openwrt-firmware/openwrt-firmware/openwrt
-# git clone https://github.com/openwrt/packages ./tmp/
-# mv ./tmp/utils/syncthing ./feeds/packages/utils/
+#PWD=/home/runner/work/openwrt-firmware/openwrt-firmware/openwrt
+#git clone https://github.com/openwrt/packages ./tmp/
+#mv ./tmp/utils/syncthing ./feeds/packages/utils/
 #rm -rf ./feeds/packages/utils/syncthing/files/etc/config/syncthing
 #rm -rf ./feeds/packages/utils/syncthing/files/etc/init.d/syncthing
 #tree ./feeds/packages/utils/syncthing
