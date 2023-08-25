@@ -59,13 +59,13 @@ jobs:
       run: |
         df -hT $PWD
         git clone -b $REPO_BRANCH --single-branch $REPO_URL openwrt
+        ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
         
     - name: 自定义安装源
       working-directory: ./openwrt
       run: |
         pwd && ls -l
-        chmod +x $DIY_P1_SH
-        $GITHUB_WORKSPACE/$DIY_P1_SH
+        sh -x $GITHUB_WORKSPACE/$DIY_P1_SH
       
     - name: 更新 & 安装 feeds
       working-directory: ./openwrt
@@ -76,8 +76,7 @@ jobs:
     - name: 自定义配置
       working-directory: ./openwrt
       run: |
-        chmod +x $DIY_P2_SH
-        $GITHUB_WORKSPACE/$DIY_P2_SH
+        sh -x $GITHUB_WORKSPACE/$DIY_P2_SH
  
     - name: SSH 连接 to Actions
       uses: P3TERX/ssh2actions@v1.0.0
