@@ -63,6 +63,7 @@ jobs:
     - name: 自定义安装源
       working-directory: ./openwrt
       run: |
+        pwd
         [ -e $FEEDS_CONF ] && mv $FEEDS_CONF openwrt/feeds.conf.default
         chmod +x $DIY_P1_SH
         $GITHUB_WORKSPACE/$DIY_P1_SH
@@ -76,7 +77,6 @@ jobs:
     - name: 自定义配置
       working-directory: ./openwrt
       run: |
-        [ -e files ] && mv files openwrt/files
         chmod +x $DIY_P2_SH
         $GITHUB_WORKSPACE/$DIY_P2_SH
  
