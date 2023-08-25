@@ -31,7 +31,6 @@ env:
   
   FEEDS_CONF: feeds.conf.default
   DIY_P1_SH: diy-part1-lienol.sh
-  DIY_P12_SH: diy-part12-lienol.sh
   DIY_P2_SH: diy-part2.sh
 
   UPLOAD_BIN_DIR: false
@@ -80,7 +79,6 @@ jobs:
       run: |
         cd openwrt
         ./scripts/feeds update -a
-        sh -x $GITHUB_WORKSPACE/$DIY_P12_SH
         ./scripts/feeds install -a
         
     - name: 自定义配置
