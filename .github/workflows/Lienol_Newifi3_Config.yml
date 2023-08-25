@@ -63,8 +63,7 @@ jobs:
     - name: 自定义安装源
       working-directory: ./openwrt
       run: |
-        pwd
-        [ -e $FEEDS_CONF ] && mv $FEEDS_CONF openwrt/feeds.conf.default
+        pwd && ls -l
         chmod +x $DIY_P1_SH
         $GITHUB_WORKSPACE/$DIY_P1_SH
       
