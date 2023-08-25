@@ -26,6 +26,10 @@
 sed -i '$a src-git smpackage https://github.com/kenzok8/small-package' feeds.conf.default
 
 
+#【tty228】: luci-app-wechatpush
+git clone https://github.com/tty228/luci-app-wechatpush `pwd`/package/luci-app-wechatpush
+
+
 #【xiaorouji】:
 #sed -i '$a src-git xiaorouji https://github.com/xiaorouji/openwrt-passwall' feeds.conf.default
 
@@ -141,3 +145,8 @@ sed -i '$a src-git smpackage https://github.com/kenzok8/small-package' feeds.con
 
 #【jerrykuku】：luci-app-jd-dailybonus
 #git clone https://github.com/jerrykuku/luci-app-jd-dailybonus.git `pwd`/package/lean/luci-app-jd-dailybonus
+
+
+echo 22222222222222222
+cat feeds.conf.default
+echo 22222222222222222
