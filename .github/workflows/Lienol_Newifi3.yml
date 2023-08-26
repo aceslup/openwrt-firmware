@@ -68,7 +68,6 @@ jobs:
         df -hT $PWD
 
     - name: 克隆源代码
-      working-directory: /workdir
       run: |
         git clone -b $REPO_BRANCH --single-branch $REPO_URL openwrt
         echo "GITHUB_WORKSPACE === $GITHUB_WORKSPACE"
