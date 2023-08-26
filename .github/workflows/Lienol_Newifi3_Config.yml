@@ -67,7 +67,7 @@ jobs:
       run: |
         echo "myFiles === $PWD"
         git clone -b $REPO_BRANCH --single-branch $REPO_URL openwrt
-        echo "cloneFiles" === ${PWD}/openwrt"
+        echo "cloneFiles === ${PWD}/openwrt"
         tree -L 2 --dirsfirst -p .
         
 #    - name: 自定义安装源
