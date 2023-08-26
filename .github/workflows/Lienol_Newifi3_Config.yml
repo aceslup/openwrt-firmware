@@ -58,14 +58,17 @@ jobs:
 
     - name: 工作目录 & 磁盘 空间检查
       run: |
-        echo "PWD: $PWD"
+        # PWD === /home/runner/work/openwrt-firmware/openwrt-firmware
+        echo "PWD === $PWD"
         df -hT $PWD
-        echo "GITHUB_WORKSPACE: $GITHUB_WORKSPACE"
+        echo "GITHUB_WORKSPACE === $GITHUB_WORKSPACE"
         
     - name: 克隆源代码
       run: |
+        echo "PWD === $PWD"
         git clone -b $REPO_BRANCH --single-branch $REPO_URL openwrt
-        ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
+        ls -l
+#        ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
         
 #    - name: 自定义安装源
 #      working-directory: ./openwrt
