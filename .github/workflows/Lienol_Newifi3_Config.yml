@@ -68,6 +68,7 @@ jobs:
         echo "PWD === $PWD"
         git clone -b $REPO_BRANCH --single-branch $REPO_URL openwrt
         ls -l
+        ls -l openwrt
 #        ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
         
 #    - name: 自定义安装源
