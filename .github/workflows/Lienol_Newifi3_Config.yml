@@ -61,50 +61,49 @@ jobs:
         # PWD === /home/runner/work/openwrt-firmware/openwrt-firmware
         echo "PWD === $PWD"
         df -hT $PWD
-        echo "GITHUB_WORKSPACE === $GITHUB_WORKSPACE"
         
     - name: 克隆源代码
       run: |
-        echo "myFiles === $PWD"
         git clone -b $REPO_BRANCH --single-branch $REPO_URL openwrt
+        echo "GITHUB_WORKSPACE === $GITHUB_WORKSPACE"
         echo "cloneFiles === ${PWD}/openwrt"
-        tree -L 2 --dirsfirst -p .
+        echo "tree === $PWD"
+        tree -L 2 --dirsfirst -f -p .
         
-#    - name: 自定义安装源
-#      working-directory: ./openwrt
-#      run: |
-#        pwd && ls -l
-#        sh -x $GITHUB_WORKSPACE/$DIY_P1_SH
+    - name: 自定义安装源
+      working-directory: ./openwrt
+      run: |
+        sh ../$DIY_P1_SH
       
- #   - name: 更新 & 安装 feeds
- #     working-directory: ./openwrt
- #     run: |
- #       ./scripts/feeds update -a
- #       ./scripts/feeds install -a
+    - name: 更新 & 安装 feeds
+      working-directory: ./openwrt
+      run: |
+        ./scripts/feeds update -a
+        ./scripts/feeds install -a
         
- #   - name: 自定义配置
- #     working-directory: ./openwrt
- #     run: |
- #       sh -x $GITHUB_WORKSPACE/$DIY_P2_SH
+    - name: 自定义配置
+      working-directory: ./openwrt
+      run: |
+        sh ../$DIY_P2_SH
  
- #   - name: SSH 连接 to Actions
- #     uses: P3TERX/ssh2actions@v1.0.0
- #     if: (github.event.inputs.ssh == 'true' && github.event.inputs.ssh  != 'false') || contains(github.event.action, 'ssh')
- #     env:
- #       TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
- #       TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+    - name: SSH 连接 to Actions
+      uses: P3TERX/ssh2actions@v1.0.0
+      if: (github.event.inputs.ssh == 'true' && github.event.inputs.ssh  != 'false') || contains(github.event.action, 'ssh')
+      env:
+        TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
         
-#    - name: 组织配置文件
-#      run: |
-#        mkdir -p /tmp/upload
-#        cd openwrt
-#        cp .config /tmp/upload/$CONFIG_FILE
+    - name: 组织配置文件
+      working-directory: ./openwrt
+      run: |
+        mkdir -p /tmp/upload
+        cp .config /tmp/upload/$CONFIG_FILE
 
-#    - name: 上传配置文件
-#      uses: actions/upload-artifact@main
-#      with:
-#        name: ${{ env.CONFIG_FILE }}
-#        path: /tmp/upload
+    - name: 上传配置文件
+      uses: actions/upload-artifact@main
+      with:
+        name: ${{ env.CONFIG_FILE }}
+        path: /tmp/upload
 
 #    - name: 删除工作流
 #      uses: c-hive/gha-remove-artifacts@v1.2.0
