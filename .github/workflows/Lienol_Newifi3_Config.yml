@@ -59,7 +59,7 @@ jobs:
     - name: 工作目录 & 磁盘 空间检查
       run: |
         echo "PWD: $PWD"
-        df -shT $PWD
+        df -hT $PWD
         echo "GITHUB_WORKSPACE: $GITHUB_WORKSPACE"
         
     - name: 克隆源代码
