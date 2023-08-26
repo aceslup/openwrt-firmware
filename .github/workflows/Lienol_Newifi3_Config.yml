@@ -19,8 +19,9 @@ env:
   REPO_URL: https://github.com/Lienol/openwrt
 #  REPO_BRANCH: 19.07
 #  REPO_BRANCH: 21.02
-#  REPO_BRANCH: 22.03
-  REPO_BRANCH: master
+  REPO_BRANCH: 22.03
+#  REPO_BRANCH: 23.05
+#  REPO_BRANCH: master
 
   CONFIG_FILE: lienol-newifi3.config
 
@@ -54,48 +55,53 @@ jobs:
         sudo -E apt-get -qq autoremove --purge
         sudo -E apt-get -qq clean ) &
         sudo timedatectl set-timezone "$TZ"
-         
+
+    - name: 工作目录 & 磁盘 空间检查
+      run: |
+        echo "PWD: $PWD"
+        df -shT $PWD
+        echo "GITHUB_WORKSPACE: $GITHUB_WORKSPACE"
+        
     - name: 克隆源代码
       run: |
-        df -hT $PWD
         git clone -b $REPO_BRANCH --single-branch $REPO_URL openwrt
         ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
         
-    - name: 自定义安装源
-      working-directory: ./openwrt
-      run: |
-        pwd && ls -l
-        sh -x $GITHUB_WORKSPACE/$DIY_P1_SH
+#    - name: 自定义安装源
+#      working-directory: ./openwrt
+#      run: |
+#        pwd && ls -l
+#        sh -x $GITHUB_WORKSPACE/$DIY_P1_SH
       
-    - name: 更新 & 安装 feeds
-      working-directory: ./openwrt
-      run: |
-        ./scripts/feeds update -a
-        ./scripts/feeds install -a
+ #   - name: 更新 & 安装 feeds
+ #     working-directory: ./openwrt
+ #     run: |
+ #       ./scripts/feeds update -a
+ #       ./scripts/feeds install -a
         
-    - name: 自定义配置
-      working-directory: ./openwrt
-      run: |
-        sh -x $GITHUB_WORKSPACE/$DIY_P2_SH
+ #   - name: 自定义配置
+ #     working-directory: ./openwrt
+ #     run: |
+ #       sh -x $GITHUB_WORKSPACE/$DIY_P2_SH
  
-    - name: SSH 连接 to Actions
-      uses: P3TERX/ssh2actions@v1.0.0
-      if: (github.event.inputs.ssh == 'true' && github.event.inputs.ssh  != 'false') || contains(github.event.action, 'ssh')
-      env:
-        TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-        TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+ #   - name: SSH 连接 to Actions
+ #     uses: P3TERX/ssh2actions@v1.0.0
+ #     if: (github.event.inputs.ssh == 'true' && github.event.inputs.ssh  != 'false') || contains(github.event.action, 'ssh')
+ #     env:
+ #       TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+ #       TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
         
-    - name: 组织配置文件
-      run: |
-        mkdir -p /tmp/upload
-        cd openwrt
-        cp .config /tmp/upload/$CONFIG_FILE
+#    - name: 组织配置文件
+#      run: |
+#        mkdir -p /tmp/upload
+#        cd openwrt
+#        cp .config /tmp/upload/$CONFIG_FILE
 
-    - name: 上传配置文件
-      uses: actions/upload-artifact@main
-      with:
-        name: ${{ env.CONFIG_FILE }}
-        path: /tmp/upload
+#    - name: 上传配置文件
+#      uses: actions/upload-artifact@main
+#      with:
+#        name: ${{ env.CONFIG_FILE }}
+#        path: /tmp/upload
 
 #    - name: 删除工作流
 #      uses: c-hive/gha-remove-artifacts@v1.2.0
