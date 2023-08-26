@@ -102,6 +102,7 @@ jobs:
       id: package
       working-directory: ./openwrt
       run: |
+        cp ../${CONFIG_FILE} .config
         make defconfig
         make download -j$(nproc)
         find dl -size -1024c -exec ls -l {} \;
