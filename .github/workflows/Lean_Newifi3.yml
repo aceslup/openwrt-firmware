@@ -123,7 +123,9 @@ jobs:
       if: (!cancelled())
       run: |
         df -hT
-        tree -L 2 --dirsfirst -f -p .
+        tree -L 1 --dirsfirst -f -p .
+        ORIGIN_NAME="openwrt-ramips-mt7621-d-team_newifi-d2-squashfs-sysupgrade.bin"
+        mv ${ORIGIN_NAME} Lean${FILE_DATE}-${ORIGIN_NAME}
 
     - name: 上传bin目录
       uses: actions/upload-artifact@main
