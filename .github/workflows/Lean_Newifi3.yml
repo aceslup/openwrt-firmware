@@ -89,7 +89,6 @@ jobs:
       working-directory: ./openwrt
       run: |
         sh ../${DIY_P2_SH}
-        cp ../${CONFIG_FILE} .config
         
     - name: SSH 连接 to Actions
       uses: P3TERX/ssh2actions@v1.0.0
@@ -102,6 +101,7 @@ jobs:
       id: package
       working-directory: ./openwrt
       run: |
+        cp ../${CONFIG_FILE} .config
         make defconfig
         make download -j$(nproc)
         find dl -size -1024c -exec ls -l {} \;
