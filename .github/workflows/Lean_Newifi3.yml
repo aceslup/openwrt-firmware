@@ -77,7 +77,7 @@ jobs:
       working-directory: ./openwrt
       run: |
         sh ../${DIY_P1_SH}
-        sh ../${DIY_P12_SH}
+#        sh ../${DIY_P12_SH}
         
     - name: 更新 & 安装 feeds
       working-directory: ./openwrt
