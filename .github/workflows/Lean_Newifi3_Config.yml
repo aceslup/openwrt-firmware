@@ -21,8 +21,7 @@ env:
   CONFIG_FILE: lean-newifi3.config
 
   FEEDS_CONF: feeds.conf.default
-  DIY_P1_SH: diy-part1-lean.sh
-  DIY_P12_SH: diy-part12-lean.sh
+  DIY_P1_SH: diy-part1.sh
   DIY_P2_SH: diy-part2.sh
 
   UPLOAD_BIN_DIR: false
@@ -54,35 +53,36 @@ jobs:
                                        rsync scons squashfs-tools subversion swig texinfo uglifyjs upx-ucl unzip vim wget xmlto xxd zlib1g-dev
         sudo timedatectl set-timezone "$TZ"
          
-        sudo mkdir -p /workdir
-        sudo chown $USER:$GROUPS /workdir
+    - name: 工作目录 & 磁盘 空间检查
+      run: |
+        # PWD === /home/runner/work/openwrt-firmware/openwrt-firmware
+        echo "PWD === $PWD"
+        df -hT $PWD
         
     - name: 克隆源代码
-      working-directory: /workdir
       run: |
-        df -hT $PWD
         git clone -b $REPO_BRANCH --single-branch $REPO_URL openwrt
-        ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
+        echo "GITHUB_WORKSPACE === $GITHUB_WORKSPACE"
+        echo "cloneFiles === ${PWD}/openwrt"
+        echo "tree === $PWD"
+        tree -L 2 --dirsfirst -f -p .
         
     - name: 自定义安装源
+      working-directory: ./openwrt
       run: |
-        [ -e $FEEDS_CONF ] && mv $FEEDS_CONF openwrt/feeds.conf.default
-        cd openwrt
-        sh -x $GITHUB_WORKSPACE/$DIY_P1_SH
-        
+        sh ../$DIY_P1_SH
+      
     - name: 更新 & 安装 feeds
+      working-directory: ./openwrt
       run: |
-        cd openwrt
         ./scripts/feeds update -a
-        sh -x $GITHUB_WORKSPACE/$DIY_P12_SH
         ./scripts/feeds install -a
         
     - name: 自定义配置
+      working-directory: ./openwrt
       run: |
-        [ -e files ] && mv files openwrt/files
-        cd openwrt
-        sh -x $GITHUB_WORKSPACE/$DIY_P2_SH
- 
+        sh ../$DIY_P2_SH
+
     - name: SSH 连接 to Actions
       uses: P3TERX/ssh2actions@v1.0.0
       if: (github.event.inputs.ssh == 'true' && github.event.inputs.ssh  != 'false') || contains(github.event.action, 'ssh')
