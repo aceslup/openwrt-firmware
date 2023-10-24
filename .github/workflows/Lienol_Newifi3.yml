@@ -10,9 +10,9 @@ name: Lienol Newifi3
 
 on:
   repository_dispatch:
-  schedule:
-    # UTC = CST - 8
-    - cron: '0 8 * * 5'
+#  schedule:
+#    # UTC = CST - 8
+#    - cron: '0 8 * * 5'
   workflow_dispatch:
     inputs:
       ssh:
