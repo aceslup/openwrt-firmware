@@ -58,7 +58,7 @@ jobs:
         sudo timedatectl set-timezone "$TZ"
         # 更新rust
         sudo wget https://sh.rustup.rs -LO rustup-init.sh \
-          && sudo sh rustup-init.sh
+          && sudo sh ./rustup-init.sh -y
 
     - name: 工作目录 & 磁盘 空间检查
       run: |
