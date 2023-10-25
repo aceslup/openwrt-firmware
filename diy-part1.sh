@@ -10,21 +10,6 @@
 # PWD=/home/runner/work/openwrt-firmware/openwrt-firmware/openwrt
 
 
-#【lean】: ssr+
-#sed -i 's/^#\(.*helloworld\)/\1/' feeds.conf.default
-#sed -i '$a src-git helloworld https://github.com/fw876/helloworld' feeds.conf.default
-#sed -i '$a src-git lean https://github.com/coolsnowwolf/packages' feeds.conf.default
-
-# Uncomment a feed source
-#sed -i 's/^#\(.*helloworld\)/\1/' feeds.conf.default
-
-# Add a feed source
-#sed -i '$a src-git lienol https://github.com/Lienol/openwrt-package' feeds.conf.default
-#sed -i '$a src-git kenzo https://github.com/kenzok8/openwrt-packages' feeds.conf.default
-#sed -i '$a src-git small https://github.com/kenzok8/small' feeds.conf.default
-sed -i '$a src-git helloworld https://github.com/fw876/helloworld' feeds.conf.default
-
-
 #【lean】：去掉无刚需的默认插件
 sed -e 's/ddns-scripts_aliyun//g' \
     -e 's/ddns-scripts_dnspod//g' \
@@ -35,9 +20,18 @@ sed -e 's/ddns-scripts_aliyun//g' \
     -e 's/coremark//g' -i ./include/target.mk
 
 #【lean】：禁用 coolsnowwolf/luci/applications 软件源
+#sed -i 's/\(^src-git packages.*\)/#\1/' feeds.conf.default
 #sed -i 's/\(^src-git luci.*\)/#\1/' feeds.conf.default
 
+
+#【lean】: ssr+
+#sed -i '$a src-git helloworld https://github.com/fw876/helloworld'  feeds.conf.default
+
+
 # 清理 coolsnowwolf/packages 无需的软件包。改由 kenzok8/small-package 提供
+git clone https://github.com/coolsnowwolf/packages ./feeds/packages
+git clone https://github.com/coolsnowwolf/luci ./feeds/luci
+
 # syncthing
 #rm -rf ./feeds/packages/utils/syncthing/files/etc/config/syncthing
 #rm -rf ./feeds/packages/utils/syncthing/files/etc/init.d/syncthing
@@ -45,14 +39,14 @@ sed -e 's/ddns-scripts_aliyun//g' \
 
 # aliyundrive-webdav
 rm -rf ./feeds/packages/multimedia/aliyundrive-webdav
-#cp -r ./feeds/smpackage/aliyundrive-webdav ./feeds/packages/multimedia/
 rm -rf ./feeds/luci/applications/luci-app-aliyundrive-webdav
+#cp -r ./feeds/smpackage/aliyundrive-webdav ./feeds/packages/multimedia/
 #cp -r ./feeds/smpackage/luci-app-aliyundrive-webdav ./feeds/luci/applications/
 
 # aliyundrive-fuse
 rm -rf ./feeds/packages/multimedia/aliyundrive-fuse
-#cp -r ./feeds/smpackage/aliyundrive-fuse ./feeds/packages/multimedia/
 rm -rf ./feeds/luci/applications/luci-app-aliyundrive-fuse
+#cp -r ./feeds/smpackage/aliyundrive-fuse ./feeds/packages/multimedia/
 #cp -r ./feeds/smpackage/luci-app-aliyundrive-fuse ./feeds/luci/applications/
 
 
