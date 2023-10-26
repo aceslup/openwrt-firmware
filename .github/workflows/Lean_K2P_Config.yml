@@ -52,6 +52,9 @@ jobs:
                                        mkisofs msmtp nano ninja-build p7zip p7zip-full patch pkgconf python2.7 python3 python3-pip qemu-utils \
                                        rsync scons squashfs-tools subversion swig texinfo uglifyjs upx-ucl unzip vim wget xmlto xxd zlib1g-dev
         sudo timedatectl set-timezone "$TZ"
+        # 更新rust
+        sudo wget https://sh.rustup.rs -LO rustup-init.sh \
+          && sudo sh ./rustup-init.sh -y
          
         sudo mkdir -p /workdir
         sudo chown $USER:$GROUPS /workdir
