@@ -24,9 +24,9 @@ env:
   REPO_URL: https://github.com/Lienol/openwrt
 #  REPO_BRANCH: 19.07
 #  REPO_BRANCH: 21.02
-  REPO_BRANCH: 22.03
-#  REPO_BRANCH: 23.05
-#  REPO_BRANCH: master
+#  REPO_BRANCH: 22.03
+  REPO_BRANCH: 23.05
+#  REPO_BRANCH: main
   
   CONFIG_FILE: lienol-newifi3.config
   
