@@ -126,7 +126,7 @@ jobs:
         df -hT
         tree -L 1 --dirsfirst -f -p .
         ORIGIN_NAME="openwrt-ramips-mt7621-d-team_newifi-d2-squashfs-sysupgrade.bin"
-        mv ${ORIGIN_NAME} Lienol-${FILE_DATE}-${ORIGIN_NAME}
+        mv ${ORIGIN_NAME} Lienol${FILE_DATE}-${ORIGIN_NAME}
 
     - name: 上传bin目录
       uses: actions/upload-artifact@main
