@@ -8,26 +8,24 @@
 # Blog: https://p3terx.com
 #=============================================================
 
-# 配置默认编译插件: include/target.mk
-sed -i \
-  -e 's/luci-app-ramfree//' \
-  -e 's/luci-app-ddns//' \
-  -e 's/ddns-scripts-cloudflare//' \
-  -e 's/ddns-scripts_aliyun//' \
-  -e 's/ddns-scripts_dnspod//' \
-  -e 's/luci-app-timecontrol//' \
-  include/target.mk
+#【lienol】: 去掉无刚需的默认插件: ./include/target.mk
+sed -e 's/luci-app-ramfree//g' \
+    -e 's/luci-app-ddns//g' \
+    -e 's/ddns-scripts-cloudflare//g' \
+    -e 's/ddns-scripts_aliyun//g' \
+    -e 's/ddns-scripts_dnspod//g' \
+    -e 's/luci-app-timecontrol//g' \
+    -i ./include/target.mk
+
+#【lienol】: passwall,syncthing
+#sed -i '$a src-git lienol https://github.com/Lienol/openwrt-package' feeds.conf.default
+#sed -i '$a src-git passwall https://github.com/xiaorouji/openwrt-passwall' feeds.conf.default
 
 
 #【lean】: ssr+
 #sed -i 's/^#\(.*helloworld\)/\1/' feeds.conf.default
 #sed -i '$a src-git helloworld https://github.com/fw876/helloworld' feeds.conf.default
 #sed -i '$a src-git lean https://github.com/coolsnowwolf/packages' feeds.conf.default
-
-
-#【lienol】: passwall,syncthing
-#sed -i '$a src-git lienol https://github.com/Lienol/openwrt-package' feeds.conf.default
-#sed -i '$a src-git passwall https://github.com/xiaorouji/openwrt-passwall' feeds.conf.default
 
 
 #【kenzok8】: passwall,ssr+,vssr,gost,smartdns,serverchan,jd-dailybonus
