@@ -17,7 +17,8 @@ sed -e 's/ddns-scripts_aliyun//g' \
     -e 's/luci-app-vsftpd//g' \
     -e 's/luci-app-accesscontrol//g' \
     -e 's/luci-app-nlbwmon//g' \
-    -e 's/coremark//g' -i ./include/target.mk
+    -e 's/coremark//g' \
+    -i ./include/target.mk
 
 #【lean】：禁用 coolsnowwolf/luci/applications 软件源
 #sed -i 's/\(^src-git packages.*\)/#\1/' feeds.conf.default
