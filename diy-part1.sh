@@ -8,6 +8,17 @@
 # Blog: https://p3terx.com
 #=============================================================
 
+# 配置默认编译插件: include/target.mk
+sed -i \
+  -e 's/luci-app-ramfree//' \
+  -e 's/luci-app-ddns//' \
+  -e 's/ddns-scripts-cloudflare//' \
+  -e 's/ddns-scripts_aliyun//' \
+  -e 's/ddns-scripts_dnspod//' \
+  -e 's/luci-app-timecontrol//' \
+  include/target.mk
+
+
 #【lean】: ssr+
 #sed -i 's/^#\(.*helloworld\)/\1/' feeds.conf.default
 #sed -i '$a src-git helloworld https://github.com/fw876/helloworld' feeds.conf.default
