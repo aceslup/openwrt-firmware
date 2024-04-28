@@ -25,8 +25,8 @@ env:
 #  REPO_BRANCH: 19.07
 #  REPO_BRANCH: 21.02
 #  REPO_BRANCH: 22.03
-  REPO_BRANCH: 23.05
-#  REPO_BRANCH: main
+#  REPO_BRANCH: 23.05
+  REPO_BRANCH: main
   
   CONFIG_FILE: lienol-newifi3.config
   
@@ -67,6 +67,8 @@ jobs:
         # PWD === /home/runner/work/openwrt-firmware/openwrt-firmware
         echo "PWD === $PWD"
         df -hT $PWD
+        free -m
+        id
 
     - name: 克隆源代码
       run: |
@@ -109,7 +111,7 @@ jobs:
       run: |
         cp ../${CONFIG_FILE} .config
         make defconfig
-        make download -j$(nproc)
+        make download -j$(nproc) || make download -j1 || make download -j1 V=s
         find dl -size -1024c -exec ls -l {} \;
         find dl -size -1024c -exec rm -f {} \;
 
