@@ -6,7 +6,7 @@
 ## https://golang.google.cn/dl/
 #sed -e 's/\(GO_VERSION_MAJOR_MINOR:\)=.*/\1=1.22/' \
 #    -e 's/\(GO_VERSION_PATCH:\)=.*/\1=2/' \
-#    -e 's/\(PKG_HASH:\)=.*/\1=58f0c5ced45a0012bce2ff7a9df03e128abcc8818ebabe5027bb92bafe20e421/' \
+#    -e 's/\(PKG_HASH:\)=.*/\1=374ea82b289ec738e968267cac59c7d5ff180f9492250254784b2044e90df5a9/' \
 #    -i ./feeds/packages/lang/golang/golang/Makefile
 
 ## Rust Version = stable
