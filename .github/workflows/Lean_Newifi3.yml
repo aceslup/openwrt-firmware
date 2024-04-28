@@ -28,7 +28,7 @@ env:
 
   FEEDS_CONF: feeds.conf.default
   DIY_P1_SH: diy-part1.sh
-  DIY_P12_SH: diy-part12-lean.sh
+  DIY_PM_SH: diy-packageManage.sh
   DIY_P2_SH: diy-part2.sh
   
   UPLOAD_BIN_DIR: false
@@ -57,9 +57,6 @@ jobs:
         sudo -E apt-get -qq autoremove --purge
         sudo -E apt-get -qq clean ) &
         sudo timedatectl set-timezone "$TZ"
-        # 更新rust
-        sudo wget https://sh.rustup.rs -LO rustup-init.sh \
-          && sudo sh ./rustup-init.sh -y
 
     - name: 工作目录 & 磁盘 空间检查
       run: |
@@ -85,7 +82,7 @@ jobs:
       working-directory: ./openwrt
       run: |
         ./scripts/feeds update -a
-        sh ../${DIY_P12_SH}
+        sh ../${DIY_PM_SH}
         ./scripts/feeds install -a
         
     - name: 自定义配置
