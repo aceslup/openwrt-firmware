@@ -11,5 +11,6 @@ sed -e 's/\(GO_VERSION_MAJOR_MINOR:\)=.*/\1=1.22/' \
 
 ## Rust Version = stable
 ### Optional: stable, beta, nightly, nightly-2018-08-01, 1.30.0
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-rustup install stable
+### wget https://sh.rustup.rs -LO rustup-init.sh
+sudo curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs -o rustup-init.sh \
+  && sudo sh ./rustup-init.sh -y
