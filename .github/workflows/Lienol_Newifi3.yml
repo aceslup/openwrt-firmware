@@ -32,6 +32,7 @@ env:
   
   FEEDS_CONF: feeds.conf.default
   DIY_P1_SH: diy-part1.sh
+  DIY_PM_SH: diy-packageManage.sh
   DIY_P2_SH: diy-part2.sh
 
   UPLOAD_BIN_DIR: false
@@ -78,18 +79,22 @@ jobs:
     - name: 自定义安装源
       working-directory: ./openwrt
       run: |
-        sh ../$DIY_P1_SH
+        sh ../${DIY_P1_SH}
       
     - name: 更新 & 安装 feeds
       working-directory: ./openwrt
       run: |
+        # 拉取插件包
         ./scripts/feeds update -a
+        # 插件包安装前的初始化
+        ../${DIY_PM_SH}
+        # 安装插件包
         ./scripts/feeds install -a
         
     - name: 自定义配置
       working-directory: ./openwrt
       run: |
-        sh ../$DIY_P2_SH
+        sh ../${DIY_P2_SH}
 
     - name: SSH 连接 to Actions
       uses: P3TERX/ssh2actions@v1.0.0
