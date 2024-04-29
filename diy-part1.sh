@@ -20,6 +20,46 @@ sed -e 's/ddns-scripts_aliyun//g' \
     -e 's/coremark//g' \
     -i ./include/target.mk
 
+
+# 重写插件源
+#tee ./feeds.conf.default <<-'EOF'
+#
+## kenzok8: 追新插件包
+#src-git smpackage https://github.com/kenzok8/small-package
+#
+## 官方依赖包
+#src-git routing https://git.openwrt.org/feed/routing.git
+#src-git telephony https://git.openwrt.org/feed/telephony.git
+#
+## lienol: 依赖组件包
+#src-git packages https://github.com/Lienol/openwrt-packages.git;master
+#src-git luci https://github.com/Lienol/openwrt-luci.git;master
+#
+## lienol: 插件包
+##src-git lienol https://github.com/Lienol/openwrt-package.git;main
+##src-git other https://github.com/Lienol/openwrt-package.git;other
+## xiaorouji: passwall
+##src-git passwall https://github.com/xiaorouji/openwrt-passwall
+#
+## lean: ssr+
+##src-git helloworld https://github.com/fw876/helloworld
+##src-git lean https://github.com/coolsnowwolf/packages
+#
+## tty228: wechatpush
+#src-git wechatpush https://github.com/tty228/luci-app-wechatpush
+#
+## homelede: homeconnect,ssr+,smartdns,serverchan,jd-dailybonus
+##src-git xiaoqingfeng https://github.com/xiaoqingfengATGH/feeds-xiaoqingfeng
+#
+## vernesong: openclash
+##src-git OpenClash https://github.com/vernesong/OpenClash
+#
+## nxhack: node
+##src-git node https://github.com/nxhack/openwrt-node-packages.git
+#
+#EOF
+
+
 #【lean】：禁用 coolsnowwolf/luci/applications 软件源
 #sed -i 's/\(^src-git packages.*\)/#\1/' feeds.conf.default
 #sed -i 's/\(^src-git luci.*\)/#\1/' feeds.conf.default
