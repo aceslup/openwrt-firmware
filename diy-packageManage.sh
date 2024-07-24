@@ -21,8 +21,12 @@
 #rm -rf feeds/packages/lang/golang
 #git clone https://github.com/kenzok8/golang feeds/packages/lang/golang
 
-rm -rf feeds/smpackage/{base-files,dnsmasq,firewall*,fullconenat,libnftnl,nftables,ppp,opkg,ucl,upx,vsftpd*,miniupnpd-iptables,wireless-regdb}
-mv feeds/smpackage/luci-app-wechatpush feeds/smpackage/luci-app-serverchan
+rm -rf package/feeds/smpackage/miniupnpd-iptables
+rm -rf feeds/smpackage/{base-files,dnsmasq,firewall*,fullconenat,libnftnl,nftables,ppp,opkg,ucl,upx,vsftpd*,wireless-regdb,luci-app-serverchan}
+
+
+## 清理重复的 miniupnpc, miniupnpd
+rm -rf package/feeds/packages/{miniupnpc,miniupnpd}
 
 
 ######################################################## 散装软件
@@ -31,28 +35,28 @@ mv feeds/smpackage/luci-app-wechatpush feeds/smpackage/luci-app-serverchan
 git clone https://github.com/tty228/luci-app-wechatpush `pwd`/feeds/luci/applications/luci-app-wechatpush
 
 
-#【pymumu】：SmartDNS
-WORKINGDIR="`pwd`/feeds/packages/net/smartdns"
-mkdir $WORKINGDIR -p
-rm $WORKINGDIR/* -fr
-wget https://github.com/pymumu/openwrt-smartdns/archive/master.zip -O $WORKINGDIR/master.zip
-unzip $WORKINGDIR/master.zip -d $WORKINGDIR
-mv $WORKINGDIR/openwrt-smartdns-master/* $WORKINGDIR/
-rmdir $WORKINGDIR/openwrt-smartdns-master
-rm $WORKINGDIR/master.zip
-
-# master分支  为openwrt 19.07之后版本使用, 此版本基于javascript
-# lede分支    为lede分支使用, 此版本基于lua
-LUCIBRANCH="lede"
-
-WORKINGDIR="`pwd`/feeds/luci/applications/luci-app-smartdns"
-mkdir $WORKINGDIR -p
-rm $WORKINGDIR/* -fr
-wget https://github.com/pymumu/luci-app-smartdns/archive/${LUCIBRANCH}.zip -O $WORKINGDIR/${LUCIBRANCH}.zip
-unzip $WORKINGDIR/${LUCIBRANCH}.zip -d $WORKINGDIR
-mv $WORKINGDIR/luci-app-smartdns-${LUCIBRANCH}/* $WORKINGDIR/
-rmdir $WORKINGDIR/luci-app-smartdns-${LUCIBRANCH}
-rm $WORKINGDIR/${LUCIBRANCH}.zip
+##【pymumu】：SmartDNS
+#WORKINGDIR="`pwd`/feeds/packages/net/smartdns"
+#mkdir $WORKINGDIR -p
+#rm $WORKINGDIR/* -fr
+#wget https://github.com/pymumu/openwrt-smartdns/archive/master.zip -O $WORKINGDIR/master.zip
+#unzip $WORKINGDIR/master.zip -d $WORKINGDIR
+#mv $WORKINGDIR/openwrt-smartdns-master/* $WORKINGDIR/
+#rmdir $WORKINGDIR/openwrt-smartdns-master
+#rm $WORKINGDIR/master.zip
+#
+## master分支  为openwrt 19.07之后版本使用, 此版本基于javascript
+## lede分支    为lede分支使用, 此版本基于lua
+#LUCIBRANCH="lede"
+#
+#WORKINGDIR="`pwd`/feeds/luci/applications/luci-app-smartdns"
+#mkdir $WORKINGDIR -p
+#rm $WORKINGDIR/* -fr
+#wget https://github.com/pymumu/luci-app-smartdns/archive/${LUCIBRANCH}.zip -O $WORKINGDIR/${LUCIBRANCH}.zip
+#unzip $WORKINGDIR/${LUCIBRANCH}.zip -d $WORKINGDIR
+#mv $WORKINGDIR/luci-app-smartdns-${LUCIBRANCH}/* $WORKINGDIR/
+#rmdir $WORKINGDIR/luci-app-smartdns-${LUCIBRANCH}
+#rm $WORKINGDIR/${LUCIBRANCH}.zip
 
 
 #【kuoruan】：Kcptun
