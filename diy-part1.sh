@@ -16,7 +16,6 @@ sed -e 's/ddns-scripts_aliyun//g' \
     -e 's/luci-app-ddns//g' \
     -e 's/luci-app-vsftpd//g' \
     -e 's/luci-app-accesscontrol//g' \
-    -e 's/luci-app-nlbwmon//g' \
     -e 's/coremark//g' \
     -i ./include/target.mk
 
@@ -80,13 +79,14 @@ sed -e 's/ddns-scripts_aliyun//g' \
 #【kenzok8】: 追新软件包
 # PATH=/home/runner/work/openwrt-firmware/openwrt-firmware/openwrt/feeds/smpackage
 # 行尾追加
-#sed -i '$a src-git smpackage https://github.com/kenzok8/small-package' feeds.conf.default
+sed -i '$a src-git smpackage https://github.com/kenzok8/small-package' feeds.conf.default
 # 首行插入，尝试 kenzok8/small-package 软件源优先解析于 coolsnowwolf/packages
-sed -i '1i src-git smpackage https://github.com/kenzok8/small-package' feeds.conf.default
+#sed -i '1i src-git smpackage https://github.com/kenzok8/small-package' feeds.conf.default
 
 
 #【tty228】: luci-app-wechatpush
-git clone https://github.com/tty228/luci-app-wechatpush `pwd`/package/luci-app-wechatpush
+#git clone https://github.com/tty228/luci-app-wechatpush `pwd`/package/luci-app-wechatpush
+git clone https://github.com/tty228/luci-app-wechatpush `pwd`/feeds/luci/applications/luci-app-wechatpush
 
 
 #【xiaorouji】:
@@ -102,27 +102,27 @@ git clone https://github.com/tty228/luci-app-wechatpush `pwd`/package/luci-app-w
 
 
 #【pymumu】：SmartDNS
-#WORKINGDIR="`pwd`/feeds/packages/net/smartdns"
-#mkdir $WORKINGDIR -p
-#rm $WORKINGDIR/* -fr
-#wget https://github.com/pymumu/openwrt-smartdns/archive/master.zip -O $WORKINGDIR/master.zip
-#unzip $WORKINGDIR/master.zip -d $WORKINGDIR
-#mv $WORKINGDIR/openwrt-smartdns-master/* $WORKINGDIR/
-#rmdir $WORKINGDIR/openwrt-smartdns-master
-#rm $WORKINGDIR/master.zip
+WORKINGDIR="`pwd`/feeds/packages/net/smartdns"
+mkdir $WORKINGDIR -p
+rm $WORKINGDIR/* -fr
+wget https://github.com/pymumu/openwrt-smartdns/archive/master.zip -O $WORKINGDIR/master.zip
+unzip $WORKINGDIR/master.zip -d $WORKINGDIR
+mv $WORKINGDIR/openwrt-smartdns-master/* $WORKINGDIR/
+rmdir $WORKINGDIR/openwrt-smartdns-master
+rm $WORKINGDIR/master.zip
 
-## master分支  为openwrt 19.07之后版本使用, 此版本基于javascript
-## lede分支    为lede分支使用, 此版本基于lua
-#LUCIBRANCH="lede"
+# master分支  为openwrt 19.07之后版本使用, 此版本基于javascript
+# lede分支    为lede分支使用, 此版本基于lua
+LUCIBRANCH="lede"
 
-#WORKINGDIR="`pwd`/feeds/luci/applications/luci-app-smartdns"
-#mkdir $WORKINGDIR -p
-#rm $WORKINGDIR/* -fr
-#wget https://github.com/pymumu/luci-app-smartdns/archive/${LUCIBRANCH}.zip -O $WORKINGDIR/${LUCIBRANCH}.zip
-#unzip $WORKINGDIR/${LUCIBRANCH}.zip -d $WORKINGDIR
-#mv $WORKINGDIR/luci-app-smartdns-${LUCIBRANCH}/* $WORKINGDIR/
-#rmdir $WORKINGDIR/luci-app-smartdns-${LUCIBRANCH}
-#rm $WORKINGDIR/${LUCIBRANCH}.zip
+WORKINGDIR="`pwd`/feeds/luci/applications/luci-app-smartdns"
+mkdir $WORKINGDIR -p
+rm $WORKINGDIR/* -fr
+wget https://github.com/pymumu/luci-app-smartdns/archive/${LUCIBRANCH}.zip -O $WORKINGDIR/${LUCIBRANCH}.zip
+unzip $WORKINGDIR/${LUCIBRANCH}.zip -d $WORKINGDIR
+mv $WORKINGDIR/luci-app-smartdns-${LUCIBRANCH}/* $WORKINGDIR/
+rmdir $WORKINGDIR/luci-app-smartdns-${LUCIBRANCH}
+rm $WORKINGDIR/${LUCIBRANCH}.zip
 
 
 ######################################################## 散装软件
