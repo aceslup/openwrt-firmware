@@ -89,7 +89,6 @@ jobs:
       working-directory: ./openwrt
       run: |
         sh ../$DIY_P2_SH
-        touch /tmp/continue
 
     - name: SSH 连接 to Actions
       uses: P3TERX/ssh2actions@v1.0.0
