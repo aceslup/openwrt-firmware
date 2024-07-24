@@ -2,6 +2,14 @@
 #
 # PWD == openwrt
 
+
+## Rust Version = stable
+### Optional: stable, beta, nightly, nightly-2018-08-01, 1.30.0
+### wget https://sh.rustup.rs -LO rustup-init.sh
+#sudo curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs -o rustup-init.sh \
+#  && sudo sh ./rustup-init.sh -y
+
+
 ## Go Version = 1.22.2
 ## https://golang.google.cn/dl/
 #sed -e 's/\(GO_VERSION_MAJOR_MINOR:\)=.*/\1=1.22/' \
@@ -9,8 +17,121 @@
 #    -e 's/\(PKG_HASH:\)=.*/\1=374ea82b289ec738e968267cac59c7d5ff180f9492250254784b2044e90df5a9/' \
 #    -i ./feeds/packages/lang/golang/golang/Makefile
 
-## Rust Version = stable
-### Optional: stable, beta, nightly, nightly-2018-08-01, 1.30.0
-### wget https://sh.rustup.rs -LO rustup-init.sh
-#sudo curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs -o rustup-init.sh \
-#  && sudo sh ./rustup-init.sh -y
+## kenzok8/golang
+#rm -rf feeds/packages/lang/golang
+#git clone https://github.com/kenzok8/golang feeds/packages/lang/golang
+
+
+######################################################## 散装软件
+#【tty228】: luci-app-wechatpush
+#git clone https://github.com/tty228/luci-app-wechatpush `pwd`/package/luci-app-wechatpush
+git clone https://github.com/tty228/luci-app-wechatpush `pwd`/feeds/luci/applications/luci-app-wechatpush
+
+
+#【pymumu】：SmartDNS
+WORKINGDIR="`pwd`/feeds/packages/net/smartdns"
+mkdir $WORKINGDIR -p
+rm $WORKINGDIR/* -fr
+wget https://github.com/pymumu/openwrt-smartdns/archive/master.zip -O $WORKINGDIR/master.zip
+unzip $WORKINGDIR/master.zip -d $WORKINGDIR
+mv $WORKINGDIR/openwrt-smartdns-master/* $WORKINGDIR/
+rmdir $WORKINGDIR/openwrt-smartdns-master
+rm $WORKINGDIR/master.zip
+
+# master分支  为openwrt 19.07之后版本使用, 此版本基于javascript
+# lede分支    为lede分支使用, 此版本基于lua
+LUCIBRANCH="lede"
+
+WORKINGDIR="`pwd`/feeds/luci/applications/luci-app-smartdns"
+mkdir $WORKINGDIR -p
+rm $WORKINGDIR/* -fr
+wget https://github.com/pymumu/luci-app-smartdns/archive/${LUCIBRANCH}.zip -O $WORKINGDIR/${LUCIBRANCH}.zip
+unzip $WORKINGDIR/${LUCIBRANCH}.zip -d $WORKINGDIR
+mv $WORKINGDIR/luci-app-smartdns-${LUCIBRANCH}/* $WORKINGDIR/
+rmdir $WORKINGDIR/luci-app-smartdns-${LUCIBRANCH}
+rm $WORKINGDIR/${LUCIBRANCH}.zip
+
+
+#【kuoruan】：Kcptun
+#git clone https://github.com/kuoruan/luci-app-kcptun.git `pwd`/package/luci-app-kcptun
+
+
+#【xiaoqingfengATGH】：ServerChan
+#git clone https://github.com/xiaoqingfengATGH/feeds-xiaoqingfeng
+#cp -r feeds-xiaoqingfeng/luci-app-serverchan `pwd`/package/lean/
+#rm -rf feeds-xiaoqingfeng
+
+
+#【281677160】: clash,openclash,vssr,gost,gowebdav,pushbot,serverchan,smartdns,syncthing,ttnode,oaf
+#git clone https://github.com/281677160/openwrt-package
+#GITCLONE_APP="openwrt-package/feeds/luci/applications"
+#GITCLONE_NET="openwrt-package/feeds/packages/net"
+#GITCLONE_UTILS="openwrt-package/feeds/packages/utils"
+
+#LUCI_APP_PATH="`pwd`/feeds/luci/applications" && mkdir -pv ${LUCI_APP_PATH}
+#LUCI_NET_PATH="`pwd`/feeds/packages/net" && mkdir -pv ${LUCI_NET_PATH}
+#LUCI_UTILS_PATH="`pwd`/feeds/packages/utils" && mkdir -pv ${LUCI_UTILS_PATH}
+
+## Add gost
+#mv ${GITCLONE_APP}/luci-app-gost ${LUCI_APP_PATH}/
+#mv ${GITCLONE_NET}/gost ${LUCI_NET_PATH}/
+## Add gowebdav
+#mv ${GITCLONE_APP}/luci-app-gowebdav ${LUCI_APP_PATH}/
+#mv ${GITCLONE_NET}/gowebdav ${LUCI_NET_PATH}/
+## Add luci-app-syncthing
+#mv ${GITCLONE_APP}/luci-app-syncthing ${LUCI_APP_PATH}/
+## Add luci-app-pushbot
+#mv ${GITCLONE_APP}/luci-app-pushbot ${LUCI_APP_PATH}/
+## Add luci-app-serverchan
+#mv ${GITCLONE_APP}/luci-app-serverchan ${LUCI_APP_PATH}/
+## Add luci-app-ttnode
+#mv ${GITCLONE_APP}/luci-app-ttnode ${LUCI_APP_PATH}/
+#rm -rf openwrt-package
+
+
+#【kenzok8】: passwall,ssr+,vssr,gost,smartdns,serverchan,jd-dailybonus
+#git clone https://github.com/kenzok8/openwrt-packages
+# Add luci-app-gost
+#cp -r openwrt-packages/{luci-app-gost,gost} `pwd`/package/lean/
+# Add luci-app-openclash
+#cp -r openwrt-packages/luci-app-openclash `pwd`/package/lean/
+# Add luci-app-clash
+#cp -r openwrt-packages/luci-app-clash `pwd`/package/lean/
+#rm -rf openwrt-packages
+
+
+#【jerrykuku】：HelloWorld, lua-maxminddb dep+
+#rm -rf `pwd`/package/lean/luci-theme-argon
+#git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git
+#git clone https://github.com/jerrykuku/lua-maxminddb.git
+#git clone https://github.com/jerrykuku/luci-app-vssr.git 
+#mv luci-theme-argon lua-maxminddb luci-app-vssr `pwd`/package/lean/
+
+
+#【xiaoqingfengATGH】: homeconnect,ssr+,smartdns,serverchan,jd-dailybonus
+# Add luci-app-homeconnect
+#git clone https://github.com/xiaoqingfengATGH/feeds-xiaoqingfeng.git
+#mv feeds-xiaoqingfeng/luci-app-homeconnect `pwd`/package/lean/
+#mv feeds-xiaoqingfeng/softethervpn5 `pwd`/package/lean/
+#rm -rf feeds-xiaoqingfeng
+
+
+#【xiaoqingfengATGH】: homeclash
+# Add homeclash
+#git clone https://github.com/xiaoqingfengATGH/homeclash
+#cp -r homeclash/luci-app-openclash `pwd`/package/lean/
+#rm -rf homeclash
+
+
+#【jerrykuku】：luci-app-jd-dailybonus
+#git clone https://github.com/jerrykuku/luci-app-jd-dailybonus.git `pwd`/package/lean/luci-app-jd-dailybonus
+
+
+#【openwrt/packages】：syncthing
+#PWD=/home/runner/work/openwrt-firmware/openwrt-firmware/openwrt
+#git clone https://github.com/openwrt/packages ./tmp/
+#mv ./tmp/utils/syncthing ./feeds/packages/utils/
+#rm -rf ./feeds/packages/utils/syncthing/files/etc/config/syncthing
+#rm -rf ./feeds/packages/utils/syncthing/files/etc/init.d/syncthing
+#tree ./feeds/packages/utils/syncthing
+#rm -rf tmp
