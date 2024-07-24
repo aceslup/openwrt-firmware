@@ -15,8 +15,8 @@ on:
         default: 'true'
       REPO_BRANCH:
         required: true
-        description: "选择拉取分支"
-        default: "master"
+        description: '选择拉取分支'
+        default: ''
 
 env:
   REPO_URL: https://github.com/coolsnowwolf/lede
