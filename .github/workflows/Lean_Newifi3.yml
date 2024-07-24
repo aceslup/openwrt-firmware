@@ -15,15 +15,20 @@ on:
     - cron: '0 8 * * 5'
   workflow_dispatch:
     inputs:
+      REPO_URL:
+        required: true
+        description: '选择拉取仓库'
+        default: 'https://github.com/coolsnowwolf/lede'
+      REPO_BRANCH:
+        required: true
+        description: '选择拉取分支'
+        default: 'master'
       ssh:
         description: 'SSH connection to Actions'
         required: false
         default: 'false'
 
 env:
-  REPO_URL: https://github.com/coolsnowwolf/lede
-  REPO_BRANCH: master
-
   CONFIG_FILE: lean-newifi3.config
 
   FEEDS_CONF: feeds.conf.default
@@ -70,6 +75,7 @@ jobs:
       run: |
         df -hT $PWD
         git clone $REPO_URL -b $REPO_BRANCH openwrt
+        git clone ${{ github.event.inputs.REPO_URL }} -b ${{ github.event.inputs.REPO_BRANCH }} openwrt
         echo "GITHUB_WORKSPACE === $GITHUB_WORKSPACE"
         echo "cloneFiles === ${PWD}/openwrt"
         echo "tree === ${PWD}"
