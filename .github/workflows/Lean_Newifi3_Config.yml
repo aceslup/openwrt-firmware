@@ -13,13 +13,16 @@ on:
         required: false
         description: 'SSH connection to Actions'
         default: 'true'
+      REPO_URL:
+        required: true
+        description: '选择拉取仓库'
+        default: 'https://github.com/coolsnowwolf/lede'
       REPO_BRANCH:
         required: true
         description: '选择拉取分支'
-        default: ''
+        default: 'master'
 
 env:
-  REPO_URL: https://github.com/coolsnowwolf/lede
   CONFIG_FILE: lean-newifi3.config
 
   FEEDS_CONF: feeds.conf.default
